@@ -1,0 +1,1 @@
+Point of Sale system for restaurants built with Spring Boot.
