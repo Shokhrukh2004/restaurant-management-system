@@ -4,27 +4,22 @@ import org.restaurant.entity.MenuItem;
 
 public class MenuItemParser {
 
-    public static MenuItem toMenuItemFromCreateRequest(MenuItemRequest request){
-        return new MenuItem(
-                0,
-                request.getName(),
-                request.getDescription(),
-                request.getPrice(),
-                request.getMenuCategory(),
-                true,
-                false,
-                null,
-                null
-        );
+    public static MenuItem toMenuItemFromCreateRequest(MenuItemCreateRequest request){
+        return MenuItem.builder()
+                .name(request.getName())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .category(request.getMenuCategory())
+                .build();
     }
 
     public static MenuItemResponse toResponseFromMenuItem(MenuItem item){
-        return new MenuItemResponse(
-                item.getName(),
-                item.getDescription(),
-                item.getPrice(),
-                item.getCategory(),
-                item.isAvailable()
-        );
+        return MenuItemResponse.builder()
+                .name(item.getName())
+                .description(item.getDescription())
+                .price(item.getPrice())
+                .category(item.getCategory())
+                .isAvailable(item.isAvailable())
+                .build();
     }
 }
