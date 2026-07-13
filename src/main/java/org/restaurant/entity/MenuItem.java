@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "menu_items")
 @Getter @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class MenuItem {
 
@@ -49,4 +48,71 @@ public class MenuItem {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+    private MenuItem(Builder builder){
+        this.id = builder.id;
+        this.name = builder.name;
+        this.description = builder.description;
+        this.price = builder.price;
+        this.category = builder.category;
+        this.isAvailable = builder.isAvailable;
+        this.isDeleted = builder.isDeleted;
+    }
+
+    public static Builder builder(){
+        return new Builder();
+    }
+
+    public static class Builder{
+        private int id = 0;
+        private String name;
+        private String description;
+        private BigDecimal price;
+        private MenuCategory category;
+        private boolean isAvailable = true;
+        private boolean isDeleted = false;
+
+        public Builder(){
+
+        }
+
+        public Builder id(int id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name){
+            this.name = name;
+            return this;
+        }
+
+        public Builder description(String description){
+            this.description = description;
+            return this;
+        }
+
+        public Builder price(BigDecimal price){
+            this.price = price;
+            return this;
+        }
+
+        public Builder category(MenuCategory category){
+            this.category = category;
+            return this;
+        }
+
+        public Builder isAvailable(boolean isAvailable){
+            this.isAvailable = isAvailable;
+            return this;
+        }
+
+        public Builder isDeleted(boolean isDeleted){
+            this.isDeleted = isDeleted;
+            return this;
+        }
+
+        public MenuItem build() {
+            return new MenuItem(this);
+        }
+    }
 }
