@@ -64,7 +64,7 @@ public class MenuItem {
     }
 
     public static class Builder{
-        private int id = 0;
+        private Integer id = null;
         private String name;
         private String description;
         private BigDecimal price;
@@ -72,13 +72,8 @@ public class MenuItem {
         private boolean isAvailable = true;
         private boolean isDeleted = false;
 
-        public Builder(){
+        private Builder(){
 
-        }
-
-        public Builder id(int id){
-            this.id = id;
-            return this;
         }
 
         public Builder name(String name){
@@ -98,16 +93,6 @@ public class MenuItem {
 
         public Builder category(MenuCategory category){
             this.category = category;
-            return this;
-        }
-
-        public Builder isAvailable(boolean isAvailable){
-            this.isAvailable = isAvailable;
-            return this;
-        }
-
-        public Builder isDeleted(boolean isDeleted){
-            this.isDeleted = isDeleted;
             return this;
         }
 
