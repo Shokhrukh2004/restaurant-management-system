@@ -2,7 +2,7 @@ package org.restaurant.service.menuItem;
 
 import org.restaurant.dto.menuItem.MenuItemCreateRequest;
 
-import org.restaurant.dto.menuItem.MenuItemParser;
+import org.restaurant.parser.MenuItemParser;
 import org.restaurant.dto.menuItem.MenuItemResponse;
 import org.restaurant.dto.menuItem.MenuItemUpdateRequest;
 import org.restaurant.entity.MenuItem;
@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.restaurant.dto.menuItem.MenuItemParser.toMenuItemFromCreateRequest;
-import static org.restaurant.dto.menuItem.MenuItemParser.toResponseFromMenuItem;
+import static org.restaurant.parser.MenuItemParser.toMenuItemFromCreateRequest;
+import static org.restaurant.parser.MenuItemParser.toResponseFromMenuItem;
 
 
 @Service

@@ -1,5 +1,7 @@
-package org.restaurant.dto.menuItem;
+package org.restaurant.parser;
 
+import org.restaurant.dto.menuItem.MenuItemCreateRequest;
+import org.restaurant.dto.menuItem.MenuItemResponse;
 import org.restaurant.entity.MenuItem;
 
 public class MenuItemParser {
