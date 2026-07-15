@@ -14,14 +14,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class OrderItemCreateRequest {
 
-    @NotNull(message = "Menu Item is required")
-    private final MenuItem menuItem;
+    @Positive(message = "Menu Item Id should be positive integer")
+    private final int menuItemId;
 
     @Positive(message = "Quantity should be minimum 1")
     private final int quantity;
-
-    @PositiveOrZero(message = "Price should be minimum 0")
-    private final BigDecimal itemPrice;
 
     @Length(max = 500, message = "Maximum length is 500 characters")
     private final String specialRequests;

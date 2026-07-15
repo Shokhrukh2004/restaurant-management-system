@@ -17,6 +17,7 @@ public class MenuItemParser {
 
     public static MenuItemResponse toResponseFromMenuItem(MenuItem item){
         return MenuItemResponse.builder()
+                .id(item.getId())
                 .name(item.getName())
                 .description(item.getDescription())
                 .price(item.getPrice())

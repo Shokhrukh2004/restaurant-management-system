@@ -55,8 +55,6 @@ public class OrderItem {
 
     private OrderItem(Builder builder){
         this.id = builder.id;
-        this.menuItem = builder.menuItem;
-        this.itemPrice = builder.itemPrice;
         this.quantity = builder.quantity;
         this.specialRequests = builder.specialRequests;
         this.orderItemStatus = builder.orderItemStatus;
@@ -68,8 +66,6 @@ public class OrderItem {
 
     public static class Builder{
         private Integer id = null;
-        private MenuItem menuItem;
-        private BigDecimal itemPrice;
         private int quantity;
         private String specialRequests;
         private OrderItemStatus orderItemStatus = OrderItemStatus.PENDING;
@@ -77,15 +73,6 @@ public class OrderItem {
         private Builder(){
         }
 
-        public Builder menuItem(MenuItem menuItem){
-            this.menuItem = menuItem;
-            return this;
-        }
-
-        public Builder itemPrice(BigDecimal itemPrice){
-            this.itemPrice = itemPrice;
-            return this;
-        }
 
         public Builder quantity(int quantity){
             this.quantity = quantity;

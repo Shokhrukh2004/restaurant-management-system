@@ -1,30 +1,26 @@
 package org.restaurant.parser;
 
 import org.restaurant.dto.order.OrderCreateRequest;
-import org.restaurant.dto.orderItem.OrderItemCreateRequest;
+import org.restaurant.dto.order.OrderResponse;
 import org.restaurant.entity.Order;
-import org.restaurant.entity.OrderItem;
 
-import java.util.List;
-
-import static org.restaurant.parser.OrderItemParser.toOrderItemFromCreateRequest;
 
 public class OrderParser {
 
     public static Order toOrderFromCreateRequest(OrderCreateRequest request) {
-
-        Order order = Order.builder()
+        return Order.builder()
                 .build();
-
-        addOrderReferenceToOrderItems(order, request.getOrderItems());
-
-        return order;
     }
 
-    private static void addOrderReferenceToOrderItems(Order order, List<OrderItemCreateRequest> requests){
-        for(OrderItemCreateRequest requestItem : requests){
-            OrderItem item = toOrderItemFromCreateRequest(requestItem);
-            order.addItem(item);
-        }
+    public static OrderResponse toOrderResponseFromOrder(Order order){
+
+        return OrderResponse.builder()
+                .id(order.getId())
+                .orderNumber(order.getOrderNumber())
+                .orderStatus(order.getOrderStatus())
+                .orderItems(OrderItemParser
+                        .toOrderItemResponseList(order.getOrderItems()))
+                .totalPrice(order.getTotalPrice())
+                .build();
     }
 }
