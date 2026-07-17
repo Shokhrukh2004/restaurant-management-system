@@ -8,7 +8,6 @@ package org.restaurant.shared.message;
  */
 public enum ValidationErrorMessage {
 
-    // Type validation (low-level)
     /** VAL_001: Positive integer validation failed */
     INVALID_POSITIVE_INT("VAL_001", "%s must be positive integer"),
 
@@ -39,6 +38,15 @@ public enum ValidationErrorMessage {
 
     /** VAL_010: Invalid format or pattern */
     INVALID_FORMAT("VAL_010", "Invalid format for %s"),
+
+    /** VAL_011: Framework validation failed (Jakarta) */
+    FRAMEWORK_VALIDATION_FAILED("VAL_011", "Validation failed: %s"),
+
+    /** VAL_012: Invalid JSON format in request */
+    INVALID_JSON_FORMAT("VAL_012", "Invalid request format"),
+
+    /** VAL_013: Missing required request parameter */
+    MISSING_REQUEST_PARAMETER("VAL_013", "Missing required parameter: %s"),
     ;
 
     private final String code;
