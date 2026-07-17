@@ -7,7 +7,6 @@ import org.restaurant.feature.menu.dto.MenuItemResponse;
 import org.restaurant.feature.menu.dto.MenuItemUpdateRequest;
 import org.restaurant.feature.menu.entity.MenuItem;
 import org.restaurant.feature.menu.enums.MenuCategory;
-import org.restaurant.shared.exception.NotFoundException;
 import org.restaurant.feature.menu.repository.MenuItemRepository;
 import org.restaurant.feature.menu.business.MenuItemBusinessLogic;
 import org.restaurant.shared.util.order.EntityFinder;

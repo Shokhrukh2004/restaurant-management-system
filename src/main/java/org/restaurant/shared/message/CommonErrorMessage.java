@@ -13,7 +13,7 @@ public enum CommonErrorMessage {
     DUPLICATE_ENTRY("COM_002", "%s already exists: %s"),
 
     /** ORD_001: Invalid status transition (e.g., DELIVERED -> PENDING) */
-    INVALID_STATUS_TRANSITION("COM_003", "Cannot transition from %s to %s"),
+    INVALID_STATUS_TRANSITION("COM_003", "Cannot transition from %s to %s status"),
 
     /** COM_003: User not authorized for operation */
     UNAUTHORIZED("COM_004", "Unauthorized access"),

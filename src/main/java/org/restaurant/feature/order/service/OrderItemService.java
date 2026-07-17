@@ -27,7 +27,7 @@ public class OrderItemService {
     }
 
     public OrderItemResponse updateQuantity(int itemId, int quantity){
-        Validator.validatePositiveInt(itemId, "itemId");
+        Validator.validatePositiveInt(itemId, "Item Id");
         Validator.validatePositiveInt(quantity, "Quantity");
 
         OrderItem item = entityFinder.getOrderItemIfExists(itemId);

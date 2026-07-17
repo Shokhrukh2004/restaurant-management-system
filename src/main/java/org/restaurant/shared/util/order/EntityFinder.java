@@ -7,6 +7,7 @@ import org.restaurant.feature.order.entity.OrderItem;
 import org.restaurant.feature.order.repository.OrderItemRepository;
 import org.restaurant.feature.order.repository.OrderRepository;
 import org.restaurant.shared.exception.NotFoundException;
+import org.restaurant.shared.message.CommonErrorMessage;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,7 +29,9 @@ public class EntityFinder {
         return menuItemRepo
                 .findByIdAndIsDeletedFalse(menuItemId)
                 .orElseThrow(
-                        () -> new NotFoundException("Menu Item not found with ID " + menuItemId));
+                        () -> new NotFoundException(CommonErrorMessage
+                                .NOT_FOUND
+                                .formatted("Menu Item" ,menuItemId)));
     }
 
     public Order getOrderIfExists(int orderId){
@@ -36,14 +39,18 @@ public class EntityFinder {
         return orderRepo
                 .findById(orderId)
                 .orElseThrow(
-                        () -> new NotFoundException("Order not found with id " + orderId));
+                        () -> new NotFoundException(CommonErrorMessage
+                                .NOT_FOUND
+                                .formatted("Order", orderId)));
     }
 
     public OrderItem getOrderItemIfExists(int itemId){
         return orderItemRepo
                 .findById(itemId)
-                .orElseThrow(() -> new NotFoundException("Order item with id "
-                        + itemId + " not found."));
+                .orElseThrow(
+                        () -> new NotFoundException(CommonErrorMessage
+                                .NOT_FOUND
+                                .formatted("Order Item", itemId)));
 
     }
 
