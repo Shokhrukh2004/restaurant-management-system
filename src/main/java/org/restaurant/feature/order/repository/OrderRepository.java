@@ -1,7 +1,7 @@
-package org.restaurant.repository;
+package org.restaurant.feature.order.repository;
 
-import org.restaurant.entity.Order;
-import org.restaurant.entity.enums.OrderStatus;
+import org.restaurant.feature.order.entity.Order;
+import org.restaurant.feature.order.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

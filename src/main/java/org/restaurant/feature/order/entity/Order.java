@@ -1,14 +1,13 @@
-package org.restaurant.entity;
+package org.restaurant.feature.order.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.restaurant.entity.enums.OrderStatus;
+import org.restaurant.feature.order.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,14 +16,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 public class Order{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "order_number", nullable = false, updatable = false, unique = true)
     private String orderNumber;
@@ -45,8 +43,14 @@ public class Order{
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = "completed_at", nullable = false,  updatable = false)
+    @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    private Order(Builder builder){
+        this.id = builder.id;
+        this.orderItems = builder.orderItems;
+        this.orderStatus = builder.orderStatus;
+    }
 
     public void addItem(OrderItem orderItem){
         orderItem.setOrder(this);
@@ -63,5 +67,22 @@ public class Order{
                 .map(item -> item.getItemPrice()
                         .multiply(new BigDecimal(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public static Builder builder(){
+        return new Builder();
+    }
+
+    public static class Builder{
+        private Integer id = null;
+        private List<OrderItem> orderItems = new ArrayList<>();
+        private OrderStatus orderStatus = OrderStatus.PENDING;
+
+        private Builder(){
+        }
+
+        public Order build(){
+            return new Order(this);
+        }
     }
 }

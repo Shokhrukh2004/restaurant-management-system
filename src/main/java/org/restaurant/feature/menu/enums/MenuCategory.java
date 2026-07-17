@@ -1,4 +1,4 @@
-package org.restaurant.entity.enums;
+package org.restaurant.feature.menu.enums;
 
 public enum MenuCategory {
     FOOD,

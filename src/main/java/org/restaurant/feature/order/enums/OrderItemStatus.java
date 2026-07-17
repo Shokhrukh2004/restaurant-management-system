@@ -1,4 +1,4 @@
-package org.restaurant.entity.enums;
+package org.restaurant.feature.order.enums;
 
 public enum OrderItemStatus {
     PENDING,
