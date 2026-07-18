@@ -12,13 +12,13 @@ import java.util.Optional;
 public interface MenuItemRepository extends JpaRepository<MenuItem, Integer> {
     List<MenuItem> findByIsDeletedFalse();
 
-    List<MenuItem> findByNameContainingAndIgnoreCaseAndIsDeletedFalse(String name);
+    List<MenuItem> findByNameContainingIgnoreCaseAndIsDeletedFalse(String name);
 
     Optional<MenuItem> findByNameIgnoreCaseAndIsDeletedFalse(String name);
 
     Optional<MenuItem> findByIdAndIsDeletedFalse(int id);
 
-    List<MenuItem> findByMenuCategoryAndIsDeletedFalse(MenuCategory category);
+    List<MenuItem> findByCategoryAndIsDeletedFalse(MenuCategory category);
 
     List<MenuItem> findByIsDeletedTrue();
 

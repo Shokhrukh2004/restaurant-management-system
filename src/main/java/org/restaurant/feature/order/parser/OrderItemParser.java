@@ -24,6 +24,7 @@ public class OrderItemParser {
     public static OrderItemResponse toOrderItemResponseFromOrderItem(OrderItem orderItem) {
         return OrderItemResponse.builder()
                 .id(orderItem.getId())
+                .menuItemId(orderItem.getMenuItem().getId())
                 .menuItemName(orderItem.getMenuItem().getName())
                 .quantity(orderItem.getQuantity())
                 .price(orderItem.getItemPrice())
