@@ -19,6 +19,8 @@ public enum SystemErrorMessage {
 
     /** SYS_008: Bad request format or structure */
     BAD_REQUEST("SYS_005", "Bad request: %s"),
+
+    METHOD_NOT_SUPPORTED("SYS_006", "Method not supported"),
     ;
 
     private final String code;
@@ -43,6 +45,7 @@ public enum SystemErrorMessage {
      * Result: "Order ID must be positive integer"
      */
     public String formatted(Object... args){
-        return String.format(message, args);
+        String result = code + "-" + message;
+        return String.format(result, args);
     }
 }

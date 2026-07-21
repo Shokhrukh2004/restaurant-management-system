@@ -6,6 +6,7 @@ import org.restaurant.feature.order.dto.OrderItemCreateRequest;
 import org.restaurant.feature.menu.entity.MenuItem;
 import org.restaurant.feature.order.entity.Order;
 import org.restaurant.feature.order.entity.OrderItem;
+import org.restaurant.feature.order.enums.OrderItemStatus;
 import org.restaurant.feature.order.enums.OrderStatus;
 import org.restaurant.feature.order.business.OrderBusinessLogic;
 import org.restaurant.feature.order.parser.OrderItemParser;
@@ -76,9 +77,11 @@ public class OrderService {
 
         order.setOrderStatus(status);
         setCompletedDateIfStatusDelivered(order);
+        updateOrderItemStatusToReady(order);
 
         Order updated = orderRepo.save(order);
-        return OrderParser.toOrderResponseFromOrder(updated);
+        return OrderParser
+                .toOrderResponseFromOrder(updated);
     }
 
     private void setCompletedDateIfStatusDelivered(Order order){
@@ -88,12 +91,18 @@ public class OrderService {
     }
 
     private Order getProcessedOrder(OrderCreateRequest request){
-        Order order = OrderParser.toOrderFromCreateRequest(request);
+        Order order = OrderParser
+                .toOrderFromCreateRequest(request);
+
         for(OrderItemCreateRequest requestItem : request.getOrderItems()){
-            MenuItem item = entityFinder.getMenuItemIfExist(requestItem.getMenuItemId());
+            MenuItem item = entityFinder
+                    .getMenuItemIfExist(requestItem.getMenuItemId());
+
             orderLogic.menuItemAvailabilityCheck(item);
 
-            OrderItem orderItem = OrderItemParser.toOrderItemFromCreateRequest(requestItem);
+            OrderItem orderItem = OrderItemParser
+                    .toOrderItemFromCreateRequest(requestItem);
+
             orderItem.setMenuItem(item);
             orderItem.setItemPrice(item.getPrice());
 
@@ -101,5 +110,15 @@ public class OrderService {
         }
 
         return order;
+    }
+
+    private void updateOrderItemStatusToReady(Order order){
+        for(OrderItem orderItem : order.getOrderItems()){
+            if(orderItem.getOrderItemStatus().equals(OrderItemStatus.PENDING)){
+                orderItem.setOrderItemStatus(OrderItemStatus.READY);
+            }
+        }
+
+        orderRepo.save(order);
     }
 }

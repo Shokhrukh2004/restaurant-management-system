@@ -66,6 +66,7 @@ public enum ValidationErrorMessage {
     }
 
     public String formatted(Object... args) {
-        return String.format(message, args);
+        String result = code + "-" + message;
+        return String.format(result, args);
     }
 }

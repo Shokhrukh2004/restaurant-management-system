@@ -41,6 +41,7 @@ public enum CommonErrorMessage {
      * Result: "Order not found with id: 5"
      */
     public String formatted(Object... args){
-        return String.format(message, args);
+        String result = code + "-" + message;
+        return String.format(result, args);
     }
 }

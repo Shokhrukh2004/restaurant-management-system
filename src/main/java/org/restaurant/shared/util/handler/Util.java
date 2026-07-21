@@ -40,6 +40,6 @@ public class Util {
             return message;
         }
 
-        return message.substring(message.indexOf("-") + 3);
+        return message.substring(message.indexOf("-") + 1);
     }
 }
