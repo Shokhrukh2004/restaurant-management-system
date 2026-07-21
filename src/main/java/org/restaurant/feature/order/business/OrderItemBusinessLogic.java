@@ -21,7 +21,7 @@ public class OrderItemBusinessLogic {
         if(orderStatus.equals(OrderStatus.DELIVERED)){
             throw new ConflictException(OrderErrorMessage
                     .ORDER_ALREADY_DELIVERED
-                    .getMessage());
+                    .formatted());
         }
     }
 
