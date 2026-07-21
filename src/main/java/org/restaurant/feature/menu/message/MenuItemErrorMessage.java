@@ -13,11 +13,8 @@ public enum MenuItemErrorMessage {
     /** MENU_001: Menu item is not available for ordering */
     MENU_ITEM_UNAVAILABLE("MENU_001", "Menu Item is not available with id: %s"),
 
-    /** MENU_002: Menu item already set to available */
-    MENU_ITEM_ALREADY_AVAILABLE("MENU_002", "Menu Item is already set to available with id: %s"),
-
-    /** MENU_003: Menu item already set to unavailable */
-    MENU_ITEM_ALREADY_UNAVAILABLE("MENU_003", "Menu Item is already set to unavailable with id: %s"),
+    /** MENU_002: Menu item already set to  */
+    MENU_ITEM_ALREADY_AVAILABILITY("MENU_002", "Menu Item is already set to %s with id: %s"),
     ;
 
     private final String code;
@@ -42,6 +39,7 @@ public enum MenuItemErrorMessage {
      * Result: "Menu Item is not available"
      */
     public String formatted(Object... args) {
-        return String.format(message, args);
+        String result = code + "-" + message;
+        return String.format(result, args);
     }
 }

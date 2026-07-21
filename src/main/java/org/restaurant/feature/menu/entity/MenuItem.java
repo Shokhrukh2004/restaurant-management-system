@@ -19,7 +19,7 @@ public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id = null;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -49,7 +49,6 @@ public class MenuItem {
     private LocalDateTime updatedAt;
 
     private MenuItem(Builder builder){
-        this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         this.price = builder.price;
@@ -63,7 +62,6 @@ public class MenuItem {
     }
 
     public static class Builder{
-        private Integer id = null;
         private String name;
         private String description;
         private BigDecimal price;

@@ -40,7 +40,7 @@ public class DomainExceptionHandler {
                 .body(Util.buildResponse(ex.getMessage(), request));
     }
 
-    @ExceptionHandler(ConflictException.class)
+    @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(
             ValidationException ex,
             WebRequest request){

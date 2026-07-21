@@ -36,6 +36,7 @@ public enum OrderErrorMessage {
      * Result: "Cannot transition from PENDING to READY"
      */
     public String formatted(Object... args) {
-        return String.format(message, args);
+        String result = code + "-" + message;
+        return String.format(result, args);
     }
 }

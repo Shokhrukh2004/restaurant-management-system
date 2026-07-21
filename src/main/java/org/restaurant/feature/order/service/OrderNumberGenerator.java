@@ -16,7 +16,7 @@ public class OrderNumberGenerator {
     }
 
     @Transactional
-    public String generateOrderNumber(){
+    public String generateOrderNumber() {
         OrderSequence sequence = getOrderSequenceIfExists("order_number");
 
         long nextValue = sequence.getNextValue();

@@ -51,7 +51,7 @@ public class MenuItemService {
     }
 
     public List<MenuItemResponse> findByCategory(MenuCategory category){
-        List<MenuItem> items = menuRepo.findByMenuCategoryAndIsDeletedFalse(category);
+        List<MenuItem> items = menuRepo.findByCategoryAndIsDeletedFalse(category);
 
         return items.stream()
                 .map(MenuItemParser::toResponseFromMenuItem)
@@ -62,7 +62,7 @@ public class MenuItemService {
         Validator.validateString(name, "Name");
 
         return menuRepo
-                .findByNameContainingAndIgnoreCaseAndIsDeletedFalse(name)
+                .findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
                 .stream()
                 .map(MenuItemParser::toResponseFromMenuItem)
                 .toList();
@@ -90,17 +90,23 @@ public class MenuItemService {
     }
 
 
-    public void updateAvailability(int id, boolean isAvailable){
+    public MenuItemResponse updateAvailability(int id, boolean isAvailable){
+        Validator.validatePositiveInt(id, "Menu Item Id");
+
         MenuItem item = entityFinder.getMenuItemIfExist(id);
 
         logic.availabilityCheck(item, isAvailable);
 
         item.setAvailable(isAvailable);
 
-        menuRepo.save(item);
+        MenuItem updated = menuRepo.save(item);
+
+        return toResponseFromMenuItem(updated);
     }
 
     public void deleteMenuItem(int id){
+        Validator.validatePositiveInt(id, "Menu Item Id");
+
         MenuItem item = entityFinder.getMenuItemIfExist(id);
 
         item.setDeleted(true);

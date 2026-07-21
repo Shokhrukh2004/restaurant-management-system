@@ -1,5 +1,6 @@
 package org.restaurant.feature.order.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import org.restaurant.feature.order.enums.OrderItemStatus;
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class OrderItemResponse {
     private final Integer id;
     private final Integer menuItemId;
